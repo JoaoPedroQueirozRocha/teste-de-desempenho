@@ -1,0 +1,95 @@
+=== SESSÃO 6 - TESTE DE ESCALABILIDADE - RESULTADOS ESPERADOS ===
+
+=== MODO CLUSTER ATIVADO ===
+Servidor master (PID 12345) iniciando...
+CPUs disponíveis: 8
+Iniciando 8 workers...
+
+Worker 1 iniciado (PID 12346)
+Worker 2 iniciado (PID 12347)
+Worker 3 iniciado (PID 12348)
+Worker 4 iniciado (PID 12349)
+Worker 5 iniciado (PID 12350)
+Worker 6 iniciado (PID 12351)
+Worker 7 iniciado (PID 12352)
+Worker 8 iniciado (PID 12353)
+
+=== TESTE DE ESCALABILIDADE ===
+
+Este teste compara performance entre servidor single-thread e cluster
+
+=== FASE 1: CARGA BAIXA (50 conexões) ===
+
+=== RESULTADOS FASE 1 (50 conexões) ===
+Requisições/seg: 850
+Latência média: 45 ms
+Throughput: 125.50 KB/sec
+
+=== FASE 2: CARGA MÉDIA (200 conexões) ===
+
+=== RESULTADOS FASE 2 (200 conexões) ===
+Requisições/seg: 780
+Latência média: 180 ms
+Throughput: 115.20 KB/sec
+
+=== FASE 3: CARGA ALTA (500 conexões) ===
+
+=== RESULTADOS FASE 3 (500 conexões) ===
+Requisições/seg: 720
+Latência média: 480 ms
+Throughput: 106.30 KB/sec
+
+=== Distribuição de Requisições ===
+Worker 1: 8450 requisições
+Worker 2: 8320 requisições
+Worker 3: 8510 requisições
+Worker 4: 8280 requisições
+Worker 5: 8390 requisições
+Worker 6: 8460 requisições
+Worker 7: 8340 requisições
+Worker 8: 8250 requisições
+
+=== RESUMO - ANÁLISE DE ESCALABILIDADE ===
+
+┌─────────────┬────────────┬──────────────┬─────────────┐
+│ Carga       │ Req/seg    │ Latência (ms)│ Throughput  │
+├─────────────┼────────────┼──────────────┼─────────────┤
+│ 50 conex    │ 850        │ 45           │ 125.50      │
+│ 200 conex   │ 780        │ 180          │ 115.20      │
+│ 500 conex   │ 720        │ 480          │ 106.30      │
+└─────────────┴────────────┴──────────────┴─────────────┘
+
+=== ÍNDICE DE ESCALABILIDADE ===
+50 → 200 conexões: 91.8% da performance inicial
+50 → 500 conexões: 84.7% da performance inicial
+
+=== ANÁLISE ===
+✓ EXCELENTE escalabilidade - Sistema mantém >80% da performance
+  Sistema se beneficia de arquitetura multi-core/cluster
+
+=== RECOMENDAÇÕES ===
+• Servidor cluster aproveita múltiplos cores da CPU
+• Load balancer pode distribuir carga entre múltiplas instâncias
+• Cache pode reduzir processamento repetitivo
+• Considerar escalabilidade horizontal (mais servidores)
+
+=== OBSERVAÇÕES ADICIONAIS ===
+
+COMPARAÇÃO: Single-Thread vs Cluster (8 workers)
+
+Single-Thread em 500 conexões:
+- Requisições/seg: ~250 req/s
+- Latência média: ~1500 ms
+- 1 CPU core sendo utilizado
+
+Cluster (8 workers) em 500 conexões:
+- Requisições/seg: ~720 req/s (2.9x melhor)
+- Latência média: ~480 ms (3x melhor)
+- 8 CPU cores sendo utilizados
+
+CONCLUSÕES:
+✓ Cluster aumentou throughput em 190%
+✓ Cluster reduziu latência em 68%
+✓ Distribuição de carga equilibrada entre workers
+✓ Sistema preparado para escalabilidade horizontal
+✓ Recomendado para produção com alta carga

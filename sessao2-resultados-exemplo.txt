@@ -1,0 +1,30 @@
+=== SESSÃO 2 - TESTE DE CARGA - RESULTADOS ESPERADOS ===
+
+API rodando em http://localhost:3000
+
+=== TESTE DE CARGA - SIMULAÇÃO DE CARGA NORMAL ===
+
+Configuração:
+- 100 usuários simultâneos
+- Duração: 30 segundos
+- Mix de operações: GET, POST
+
+=== RESULTADOS DO TESTE DE CARGA ===
+
+Duração total: 30 segundos
+Requisições totais: 18000+
+Requisições por segundo: 600+ req/sec
+Latência média: 50-80 ms
+Latência p95: 150-200 ms
+Latência p99: 250-300 ms
+Throughput: 85+ KB/sec
+Erros: 0
+
+=== ANÁLISE ===
+✓ Sistema suporta carga normal adequadamente
+
+OBSERVAÇÕES:
+- API REST consegue processar múltiplas requisições simultâneas
+- Latência aumenta com operações mais complexas (POST vs GET)
+- Sistema estável sob carga normal
+- Sem erros durante o teste

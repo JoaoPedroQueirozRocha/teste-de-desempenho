@@ -1,0 +1,15 @@
+=== SESSÃO 1 - RESULTADOS ESPERADOS ===
+
+Servidor rodando em http://localhost:3000
+
+=== RESULTADOS DO TESTE ===
+
+Requisições totais: 10000+
+Requisições por segundo: 1000+ req/sec
+Latência média: 5-15 ms
+Throughput: 150+ KB/sec
+
+ANÁLISE:
+- Servidor simples consegue processar milhares de requisições
+- Latência baixa para operações simples
+- Throughput adequado para resposta "Hello World"
